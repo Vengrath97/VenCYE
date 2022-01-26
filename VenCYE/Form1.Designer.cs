@@ -167,6 +167,7 @@ namespace VenCYE
             this.ButtonAddExpense1.TabIndex = 14;
             this.ButtonAddExpense1.Text = "Add Expense";
             this.ButtonAddExpense1.UseVisualStyleBackColor = true;
+            this.ButtonAddExpense1.Click += new System.EventHandler(this.ButtonAddExpense1_Click);
             // 
             // ButtonRemoveExpense1
             // 

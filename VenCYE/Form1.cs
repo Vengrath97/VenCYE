@@ -12,22 +12,43 @@ namespace VenCYE
 {
     public partial class Form : System.Windows.Forms.Form
     {
+        static List<Day> Days = new List<Day>();
         public Form()
         {
             InitializeComponent();
         }
 
 
-        private void AddExpenseToDisplay(Day day, int expenseID)
+        private void AddExpenseToDisplay(Day day, Expense expense) //int expenseID
         {
             listBoxYear1.Items.Add(day.Year.ToString());
             listBoxMonth1.Items.Add(day.MonthOfYear.ToString());
             listBoxDay1.Items.Add(day.DayOfMonth.ToString());
-            listBoxExpense1.Items.Add(day.Expenses[expenseID].Name);
-            listBoxCategory1.Items.Add(day.Expenses[expenseID].Category);
-            listBoxValue1.Items.Add(day.Expenses[expenseID].Value.ToString());
+            listBoxExpense1.Items.Add(expense.Name);
+            listBoxCategory1.Items.Add(expense.Category);
+            listBoxValue1.Items.Add(expense.Value.ToString());
         }
 
+
+        private void InfoToDisplay()
+        {
+            foreach (Day day in Days)
+            {
+                foreach (Expense expense in day.Expenses)
+                {
+                    AddExpenseToDisplay(day, expense);
+                }
+            }
+        }
+        private void ClearDisplay()
+        {
+            listBoxYear1.Text = "";
+            listBoxMonth1.Text = "";
+            listBoxDay1.Text = "";
+            listBoxExpense1.Text = "";
+            listBoxCategory1.Text = "";
+            listBoxValue1.Text = "";
+        }
 
         private void ButtonAddExpense1_Click(object sender, EventArgs e)
         {
@@ -50,9 +71,12 @@ namespace VenCYE
             if (dayValid && monthValid && yearValid && valueValid)
             {
                 Expense tempExpense = new Expense(textBoxExpense1.Text, textBoxCategory1.Text, parsedValue);
-                Day tempDay = new Day(parsedDay, parsedMonth, parsedYear);                                  //
-                tempDay.AddExpense(tempExpense);                                                            
-                AddExpenseToDisplay(tempDay, 0);
+                Day tempDay = new Day(parsedDay, parsedMonth, parsedYear);
+                tempDay.AddExpense(tempExpense);
+                Days.Add(tempDay);
+                ClearDisplay();
+                InfoToDisplay();
+                tempDay.Expenses.Clear();
             }
             else 
             {

@@ -42,12 +42,12 @@ namespace VenCYE
         }
         private void ClearDisplay()
         {
-            listBoxYear1.Text = "";
-            listBoxMonth1.Text = "";
-            listBoxDay1.Text = "";
-            listBoxExpense1.Text = "";
-            listBoxCategory1.Text = "";
-            listBoxValue1.Text = "";
+            listBoxYear1.Items.Clear();
+            listBoxMonth1.Items.Clear();
+            listBoxDay1.Items.Clear();
+            listBoxExpense1.Items.Clear();
+            listBoxCategory1.Items.Clear();
+            listBoxValue1.Items.Clear();
         }
 
         private void ButtonAddExpense1_Click(object sender, EventArgs e)
@@ -70,13 +70,26 @@ namespace VenCYE
 
             if (dayValid && monthValid && yearValid && valueValid)
             {
-                Expense tempExpense = new Expense(textBoxExpense1.Text, textBoxCategory1.Text, parsedValue);
-                Day tempDay = new Day(parsedDay, parsedMonth, parsedYear);
-                tempDay.AddExpense(tempExpense);
-                Days.Add(tempDay);
-                ClearDisplay();
-                InfoToDisplay();
-                tempDay.Expenses.Clear();
+                bool dayAlreadyExists = false;
+                foreach (Day day in Days)
+                {
+                    if (day.DayOfMonth == parsedDay && day.MonthOfYear == parsedMonth && day.Year == parsedYear)
+                    {
+                        dayAlreadyExists = true;
+                        day.AddExpense(new Expense(textBoxExpense1.Text, textBoxCategory1.Text, parsedValue));
+                        ClearDisplay();
+                        InfoToDisplay();
+                        break;
+
+                    }
+                }
+                if (!dayAlreadyExists)
+                {
+                    Days.Add(new Day(parsedDay, parsedMonth, parsedYear));
+                    Days[Days.Count-1].AddExpense(new Expense(textBoxExpense1.Text, textBoxCategory1.Text, parsedValue));
+                    ClearDisplay();
+                    InfoToDisplay();
+                }
             }
             else 
             {

@@ -9,11 +9,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 
-
-
-/// <summary>
-/// coś się dzieje, kiedy zapisuję SCVkę; mianowicie: 
-/// </summary>
 namespace VenCYE
 {
     public partial class Form : System.Windows.Forms.Form

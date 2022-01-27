@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace VenCYE
 {
@@ -27,6 +28,19 @@ namespace VenCYE
         public void AddExpense(Expense expense)
         {
             this.Expenses.Add(expense);
+        }
+        public void SaveToCSV()
+        {
+            List<string> fullLine = new List<string>();
+            foreach (Expense expense in Expenses)
+            {
+                fullLine.Add(this.DayOfMonth + "," + this.MonthOfYear + "," + this.Year + "," + expense.CSVFormatLine());
+            }
+            foreach (string text in fullLine)
+            {
+                if (File.ReadAllText("savefile.csv") == "") { File.AppendAllText("savefile.csv", (text)); }
+                else { File.AppendAllText("savefile.csv", ("\n" + text)); }
+            }
         }
     }
 }

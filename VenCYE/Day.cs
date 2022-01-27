@@ -9,10 +9,10 @@ namespace VenCYE
 {
     class Day
     {
-        int _dayOfMonth;
-        int _monthOfYear;
-        int _year;
-        List<Expense> _expenses;
+        private int _dayOfMonth;
+        private int _monthOfYear;
+        private int _year;
+        private List<Expense> _expenses;
 
         public int DayOfMonth { get => _dayOfMonth; set => _dayOfMonth = value; }
         public int MonthOfYear { get => _monthOfYear; set => _monthOfYear = value; }
@@ -34,7 +34,7 @@ namespace VenCYE
             List<string> fullLine = new List<string>();
             foreach (Expense expense in Expenses)
             {
-                fullLine.Add(this.DayOfMonth + "," + this.MonthOfYear + "," + this.Year + "," + expense.CSVFormatLine());
+                fullLine.Add(this.DayOfMonth + "," + this.MonthOfYear + "," + this.Year + "," + expense.getCSVFormattedLine());
             }
             foreach (string text in fullLine)
             {

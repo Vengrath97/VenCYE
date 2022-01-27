@@ -21,7 +21,7 @@ namespace VenCYE
             Category = category;
             Value = value;
         }
-        public string CSVFormatLine()
+        public string getCSVFormattedLine()
         {
             return (this.Name + "," + this.Category + "," + this.Value + ",");
         }

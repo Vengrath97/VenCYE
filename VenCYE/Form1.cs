@@ -19,9 +19,13 @@ namespace VenCYE
     public partial class Form : System.Windows.Forms.Form
     {
         static List<Day> Days = new List<Day>();
+        string csvFilePath = "savefile.csv";
     public Form()
         {
-            if (!File.Exists("savefile.csv")) { File.WriteAllText("savefile.csv", ""); }
+            if (!File.Exists(csvFilePath)) 
+            { 
+                File.WriteAllText(csvFilePath, "");
+            }
             InitializeComponent();
         }
         public void InfoToDisplay()
@@ -64,7 +68,7 @@ namespace VenCYE
         private void button1_Click(object sender, EventArgs e)
         {
 
-            File.WriteAllText("savefile.csv", "");
+            File.WriteAllText(csvFilePath, "");
             foreach (Day day in Days)
             {
                 day.SaveToCSV();
@@ -72,7 +76,7 @@ namespace VenCYE
         }
         private void LoadCSV()
         {
-            string[] lines = File.ReadAllLines("savefile.csv");
+            string[] lines = File.ReadAllLines(csvFilePath);
             foreach (string item in lines)
             {
                 string[] subs = item.Split(",");

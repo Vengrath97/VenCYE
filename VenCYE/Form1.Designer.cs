@@ -175,8 +175,9 @@ namespace VenCYE
             this.ButtonRemoveExpense1.Name = "ButtonRemoveExpense1";
             this.ButtonRemoveExpense1.Size = new System.Drawing.Size(115, 61);
             this.ButtonRemoveExpense1.TabIndex = 15;
-            this.ButtonRemoveExpense1.Text = "Remove Expense";
+            this.ButtonRemoveExpense1.Text = "Clear";
             this.ButtonRemoveExpense1.UseVisualStyleBackColor = true;
+            this.ButtonRemoveExpense1.Click += new System.EventHandler(this.ButtonRemoveExpense1_Click);
             // 
             // listBoxYear1
             // 

@@ -17,8 +17,6 @@ namespace VenCYE
         {
             InitializeComponent();
         }
-
-
         private void AddExpenseToDisplay(Day day, Expense expense) //int expenseID
         {
             listBoxYear1.Items.Add(day.Year.ToString());
@@ -28,8 +26,6 @@ namespace VenCYE
             listBoxCategory1.Items.Add(expense.Category);
             listBoxValue1.Items.Add(expense.Value.ToString());
         }
-
-
         private void InfoToDisplay()
         {
             foreach (Day day in Days)
@@ -49,7 +45,6 @@ namespace VenCYE
             listBoxCategory1.Items.Clear();
             listBoxValue1.Items.Clear();
         }
-
         private void ButtonAddExpense1_Click(object sender, EventArgs e)
         {
             int parsedDay;
@@ -97,9 +92,10 @@ namespace VenCYE
             }
         }
 
-
-
-
-
+        private void ButtonRemoveExpense1_Click(object sender, EventArgs e)
+        {
+            ClearDisplay();
+            Days.Clear();
+        }
     }
 }

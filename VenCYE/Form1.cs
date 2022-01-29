@@ -70,7 +70,7 @@ namespace VenCYE
             {
                 return -1;
             }
-        }   //returns value between min and max, or -1 if outside of range, or invalid data
+        }
         private double doubleValidation(string input)
         {
             double parsedValue;
@@ -82,7 +82,7 @@ namespace VenCYE
             {
                 return -1D;
             }
-        }                         //returns value, or -1 (in double format) if invalid
+        }
         private int getDayIndex(int day, int month, int year)
         {
             int index = 0;
@@ -95,7 +95,7 @@ namespace VenCYE
                 index += 1;
             }
             return -1;
-        }                 //returns index in Days table, or -1 if day doesn't exist
+        }
         private void AssignExpense(string dayData, string monthData, string yearData, Expense expense)
         {
             int parsedDay = intValidation(dayData, 1, 31);
